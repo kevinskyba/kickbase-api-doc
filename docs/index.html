@@ -1,0 +1,2548 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kickbase</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai-sublime.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>
+        hljs.configure({
+            tabReplace: '    ',
+        });
+        hljs.initHighlightingOnLoad();
+    </script>
+    <style>body {
+    position: relative;
+}
+
+h1 {
+    margin-top: 5px;
+}
+
+h1, h2, h3, h4 {
+    color: #2b2b2b;
+}
+
+h2:after {
+    content: ' ';
+}
+
+h5 {
+    font-weight: bold;
+}
+
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+    display: none;
+    position: absolute;
+    margin-left: 8px;
+}
+
+h1:hover a, h2:hover a, h3:hover a, h4:hover a, h5:hover a, h6:hover a {
+    color: #a5a5a5;
+    display: initial;
+}
+
+.nav.nav-tabs > li > a {
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.tab-content {
+    padding-top: 8px;
+}
+
+.table {
+    margin-bottom: 8px;
+}
+
+pre {
+    border-radius: 0px;
+    border: none;
+}
+
+pre code {
+    margin: -9.5px;
+}
+
+.request {
+    margin-top: 12px;
+    margin-bottom: 24px;
+}
+
+.response-text-sample {
+    padding: 0px !important;
+}
+
+.response-text-sample pre {
+    margin-bottom: 0px;
+}
+
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 250px;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: #2b2b2b;
+    padding-top: 20px;
+}
+
+#sidebar-wrapper ul {
+    width: 250px;
+}
+
+#sidebar-wrapper ul li {
+    margin-right: 10px;
+}
+
+#sidebar-wrapper ul li a:hover {
+    background: inherit;
+    text-decoration: none;
+}
+
+#sidebar-wrapper ul li a {
+    display: block;
+    color: #ECF0F1;
+    padding: 6px 15px;
+}
+
+#sidebar-wrapper ul li ul {
+    padding-left: 25px;
+}
+
+#sidebar-wrapper ul li ul li a {
+    padding: 1px 0px;
+}
+
+#sidebar-wrapper ul li a:hover,
+#sidebar-wrapper ul li a:focus {
+    color: #e0c46c;
+    border-right: solid 1px #e0c46c;
+}
+
+#sidebar-wrapper ul li.active > a {
+    color: #e0c46c;
+    border-right: solid 3px #e0c46c;
+}
+
+#sidebar-wrapper ul li:not(.active) ul {
+    display: none;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+    padding: 15px 15px 15px 250px;
+}
+</style>
+</head>
+<body data-spy="scroll" data-target=".scrollspy">
+<div id="sidebar-wrapper">
+    <div class="scrollspy">
+    <ul id="main-menu" data-spy="affix" class="nav">
+        <li>
+            <a href="#doc-general-notes">General notes</a>
+        </li>
+        
+        <li>
+            <a href="#doc-api-detail">API detail</a>
+        </li>
+        
+        
+        
+        <li>
+            <a href="#folder-user">User</a>
+            <ul>
+                
+                <li>
+                    <a href="#request-user-login">Login</a>
+                </li>
+                
+                <li>
+                    <a href="#request-user-reset-password">Reset Password</a>
+                </li>
+                
+                <li>
+                    <a href="#request-user-league-user-info">League User Info</a>
+                </li>
+                
+                <li>
+                    <a href="#request-user-user-match-day-feed">User Match Day Feed</a>
+                </li>
+                
+            </ul>
+        </li>
+        
+        
+        <li>
+            <a href="#folder-player">Player</a>
+            <ul>
+                
+                <li>
+                    <a href="#request-player-player-info">Player Info</a>
+                </li>
+                
+                <li>
+                    <a href="#request-player-player-feed">Player Feed</a>
+                </li>
+                
+                <li>
+                    <a href="#request-player-player-points">Player Points</a>
+                </li>
+                
+                <li>
+                    <a href="#request-player-player-stats">Player Stats</a>
+                </li>
+                
+                <li>
+                    <a href="#request-player-search-competition-players">Search Competition Players</a>
+                </li>
+                
+            </ul>
+        </li>
+        
+        
+        <li>
+            <a href="#folder-market">Market</a>
+            <ul>
+                
+                <li>
+                    <a href="#request-market-remove-player-from-market">Remove Player From Market</a>
+                </li>
+                
+                <li>
+                    <a href="#request-market-market">Market</a>
+                </li>
+                
+                <li>
+                    <a href="#request-market-add-player-to-market">Add Player To Market</a>
+                </li>
+                
+                <li>
+                    <a href="#request-market-accept-offer">Accept Offer</a>
+                </li>
+                
+                <li>
+                    <a href="#request-market-update-price">Update Price</a>
+                </li>
+                
+                <li>
+                    <a href="#request-market-decline-offer">Decline Offer</a>
+                </li>
+                
+                <li>
+                    <a href="#request-market-place-offer">Place Offer</a>
+                </li>
+                
+                <li>
+                    <a href="#request-market-remove-offer">Remove Offer</a>
+                </li>
+                
+            </ul>
+        </li>
+        
+        
+        <li>
+            <a href="#folder-lineup">Lineup</a>
+            <ul>
+                
+                <li>
+                    <a href="#request-lineup-lineup">Lineup</a>
+                </li>
+                
+                <li>
+                    <a href="#request-lineup-lineup-extended">Lineup Extended</a>
+                </li>
+                
+                <li>
+                    <a href="#request-lineup-ligainsider">Ligainsider</a>
+                </li>
+                
+                <li>
+                    <a href="#request-lineup-set-lineup">Set Lineup</a>
+                </li>
+                
+            </ul>
+        </li>
+        
+        
+        <li>
+            <a href="#folder-live-match-day">Live Match Day</a>
+            <ul>
+                
+                <li>
+                    <a href="#request-live-match-day-chat-history">Chat History</a>
+                </li>
+                
+                <li>
+                    <a href="#request-live-match-day-overview">Overview</a>
+                </li>
+                
+                <li>
+                    <a href="#request-live-match-day-events-history">Events History</a>
+                </li>
+                
+                <li>
+                    <a href="#request-live-match-day-not-lined-up-players">Not Lined Up Players</a>
+                </li>
+                
+                <li>
+                    <a href="#request-live-match-day-player-history">Player History</a>
+                </li>
+                
+                <li>
+                    <a href="#request-live-match-day-top-10">Top 10</a>
+                </li>
+                
+                <li>
+                    <a href="#request-live-match-day-team-players">Team Players</a>
+                </li>
+                
+                <li>
+                    <a href="#request-live-match-day-team-ranking">Team Ranking</a>
+                </li>
+                
+                <li>
+                    <a href="#request-live-match-day-chat-message">Chat Message</a>
+                </li>
+                
+            </ul>
+        </li>
+        
+        
+        <li>
+            <a href="#folder-league">League</a>
+            <ul>
+                
+                <li>
+                    <a href="#request-league-leagues">Leagues</a>
+                </li>
+                
+                <li>
+                    <a href="#request-league-feed-comments">Feed Comments</a>
+                </li>
+                
+                <li>
+                    <a href="#request-league-feed">Feed</a>
+                </li>
+                
+                <li>
+                    <a href="#request-league-info">Info</a>
+                </li>
+                
+                <li>
+                    <a href="#request-league-players-for-match-day">Players For Match Day</a>
+                </li>
+                
+                <li>
+                    <a href="#request-league-stats">Stats</a>
+                </li>
+                
+                <li>
+                    <a href="#request-league-users">Users</a>
+                </li>
+                
+                <li>
+                    <a href="#request-league-user-profile">User Profile</a>
+                </li>
+                
+                <li>
+                    <a href="#request-league-user-stats">User Stats</a>
+                </li>
+                
+                <li>
+                    <a href="#request-league-user-players">User Players</a>
+                </li>
+                
+                <li>
+                    <a href="#request-league-me">Me</a>
+                </li>
+                
+                <li>
+                    <a href="#request-league-quickstats">Quickstats</a>
+                </li>
+                
+                <li>
+                    <a href="#request-league-comment-feed">Comment Feed</a>
+                </li>
+                
+                <li>
+                    <a href="#request-league-comment-league">Comment League</a>
+                </li>
+                
+            </ul>
+        </li>
+        
+        
+        <li>
+            <a href="#folder-competition">Competition</a>
+            <ul>
+                
+                <li>
+                    <a href="#request-competition-add-favorite-player">Add Favorite Player</a>
+                </li>
+                
+                <li>
+                    <a href="#request-competition-remove-favorite-player">Remove Favorite Player</a>
+                </li>
+                
+                <li>
+                    <a href="#request-competition-top-25-players">Top 25 Players</a>
+                </li>
+                
+                <li>
+                    <a href="#request-competition-matches">Matches</a>
+                </li>
+                
+                <li>
+                    <a href="#request-competition-table">Table</a>
+                </li>
+                
+                <li>
+                    <a href="#request-competition-team-players">Team Players</a>
+                </li>
+                
+                <li>
+                    <a href="#request-competition-search-players">Search Players</a>
+                </li>
+                
+            </ul>
+        </li>
+        
+        
+        <li>
+            <a href="#folder-gift">Gift</a>
+            <ul>
+                
+                <li>
+                    <a href="#request-gift-collect">Collect</a>
+                </li>
+                
+                <li>
+                    <a href="#request-gift-current-gift">Current Gift</a>
+                </li>
+                
+            </ul>
+        </li>
+        
+        
+        <li>
+            <a href="#folder-achievements">Achievements</a>
+            <ul>
+                
+                <li>
+                    <a href="#request-achievements-achivements">Achivements</a>
+                </li>
+                
+            </ul>
+        </li>
+        
+    </ul>
+</div>
+
+</div>
+<div id="page-content-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>Kickbase</h1>
+
+                <h2 id="doc-general-notes">
+                    General notes
+                    <a href="#doc-general-notes"><i class="glyphicon glyphicon-link"></i></a>
+                </h2>
+
+                <p>This API was published as part of <a href="https://github.com/kevinskyba/kickbase-api-doc">kickbase-api-doc</a> on GitHub. It is licensed under the <a href="https://github.com/kevinskyba/kickbase-api-doc/blob/master/LICENSE">MIT License</a>. The purpose of this documentation is for scientific reasons only!</p>
+
+
+                
+
+                <h2 id="doc-api-detail">
+                    API detail
+                    <a href="#doc-api-detail"><i class="glyphicon glyphicon-link"></i></a>
+                </h2>
+
+                
+
+
+                
+                
+                <div class="endpoints-group">
+                    <h3 id="folder-user">
+                        User
+                        <a href="#folder-user"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-user-login">
+                            Login
+                            <a href="#request-user-login"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div><p>Logs in a user by email and password and saves the password as an environment variable.</p>
+</div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-user-login-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-user-login-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-user-login-example-curl">
+                                    <pre><code class="hljs curl">curl -X POST -H "Content-Type: application/json" -H "Accept: application/json" -d '{
+    "email": "[email]",
+    "password": "[password]",
+    "ext": false
+}' "https://api.kickbase.com/user/login"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-user-login-example-http">
+                                    <pre><code class="hljs http">POST /user/login HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+
+{
+    "email": "[email]",
+    "password": "[password]",
+    "ext": false
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-user-reset-password">
+                            Reset Password
+                            <a href="#request-user-reset-password"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-user-reset-password-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-user-reset-password-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-user-reset-password-example-curl">
+                                    <pre><code class="hljs curl">curl -X POST -H "Content-Type: application/json" -H "Accept: application/json" -d '{
+    "password": "",
+    "token": ""
+}' "https://api.kickbase.com/user/resetpassword"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-user-reset-password-example-http">
+                                    <pre><code class="hljs http">POST /user/resetpassword HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+
+{
+    "password": "",
+    "token": ""
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-user-league-user-info">
+                            League User Info
+                            <a href="#request-user-league-user-info"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-user-league-user-info-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-user-league-user-info-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-user-league-user-info-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" "https://api.kickbase.com/leagues/[league_id]/me"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-user-league-user-info-example-http">
+                                    <pre><code class="hljs http">GET /leagues/[league_id]/me HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+Cookie: kkstrauth=[token];</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-user-user-match-day-feed">
+                            User Match Day Feed
+                            <a href="#request-user-user-match-day-feed"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-user-user-match-day-feed-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-user-user-match-day-feed-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-user-user-match-day-feed-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" "https://api.kickbase.com/leagues/[league_id]/users/[user_id]/feed"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-user-user-match-day-feed-example-http">
+                                    <pre><code class="hljs http">GET /leagues/[league_id]/users/[user_id]/feed HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+Cookie: kkstrauth=[token];</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+
+                </div>
+                
+                
+                <div class="endpoints-group">
+                    <h3 id="folder-player">
+                        Player
+                        <a href="#folder-player"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-player-player-info">
+                            Player Info
+                            <a href="#request-player-player-info"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-player-player-info-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-player-player-info-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-player-player-info-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" "https://api.kickbase.com/leagues/[league_id]/players/[player_id]/"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-player-player-info-example-http">
+                                    <pre><code class="hljs http">GET /leagues/[league_id]/players/[player_id]/ HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+Cookie: kkstrauth=[token];</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-player-player-feed">
+                            Player Feed
+                            <a href="#request-player-player-feed"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-player-player-feed-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-player-player-feed-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-player-player-feed-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" "https://api.kickbase.com/leagues/[league_id]/players/[player_id]/feed"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-player-player-feed-example-http">
+                                    <pre><code class="hljs http">GET /leagues/[league_id]/players/[player_id]/feed HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+Cookie: kkstrauth=[token];</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-player-player-points">
+                            Player Points
+                            <a href="#request-player-player-points"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-player-player-points-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-player-player-points-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-player-player-points-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" "https://api.kickbase.com/players/[player_id]/points"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-player-player-points-example-http">
+                                    <pre><code class="hljs http">GET /players/[player_id]/points HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+Cookie: kkstrauth=[token];</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-player-player-stats">
+                            Player Stats
+                            <a href="#request-player-player-stats"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-player-player-stats-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-player-player-stats-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-player-player-stats-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" "https://api.kickbase.com/leagues/[league_id]/players/[player_id]/stats"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-player-player-stats-example-http">
+                                    <pre><code class="hljs http">GET /leagues/[league_id]/players/[player_id]/stats HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+Cookie: kkstrauth=[token];</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-player-search-competition-players">
+                            Search Competition Players
+                            <a href="#request-player-search-competition-players"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-player-search-competition-players-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-player-search-competition-players-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-player-search-competition-players-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" "https://api.kickbase.com/competition/search?query="</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-player-search-competition-players-example-http">
+                                    <pre><code class="hljs http">GET /competition/search?query= HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+Cookie: kkstrauth=[token];</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+
+                </div>
+                
+                
+                <div class="endpoints-group">
+                    <h3 id="folder-market">
+                        Market
+                        <a href="#folder-market"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-market-remove-player-from-market">
+                            Remove Player From Market
+                            <a href="#request-market-remove-player-from-market"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-market-remove-player-from-market-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-market-remove-player-from-market-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-market-remove-player-from-market-example-curl">
+                                    <pre><code class="hljs curl">curl -X DELETE -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" "https://api.kickbase.com/leagues/[league_id]/market/[player_id]"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-market-remove-player-from-market-example-http">
+                                    <pre><code class="hljs http">DELETE /leagues/[league_id]/market/[player_id] HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+Cookie: kkstrauth=[token];</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-market-market">
+                            Market
+                            <a href="#request-market-market"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-market-market-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-market-market-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-market-market-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" "https://api.kickbase.com/leagues/[league_id]/market/"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-market-market-example-http">
+                                    <pre><code class="hljs http">GET /leagues/[league_id]/market/ HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+Cookie: kkstrauth=[token];</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-market-add-player-to-market">
+                            Add Player To Market
+                            <a href="#request-market-add-player-to-market"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-market-add-player-to-market-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-market-add-player-to-market-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-market-add-player-to-market-example-curl">
+                                    <pre><code class="hljs curl">curl -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" -d '{
+    "playerId": "663",
+    "price": 6000000
+}' "https://api.kickbase.com/leagues/[league_id]/market"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-market-add-player-to-market-example-http">
+                                    <pre><code class="hljs http">POST /leagues/[league_id]/market HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+Cookie: kkstrauth=[token];
+
+{
+    "playerId": "663",
+    "price": 6000000
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-market-accept-offer">
+                            Accept Offer
+                            <a href="#request-market-accept-offer"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-market-accept-offer-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-market-accept-offer-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-market-accept-offer-example-curl">
+                                    <pre><code class="hljs curl">curl -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" -d '{
+    "playerId": "663",
+    "price": 6000000
+}' "https://api.kickbase.com/leagues/[league_id]/market/[player_id]/offers/[offer_id]/accept"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-market-accept-offer-example-http">
+                                    <pre><code class="hljs http">POST /leagues/[league_id]/market/[player_id]/offers/[offer_id]/accept HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+Cookie: kkstrauth=[token];
+
+{
+    "playerId": "663",
+    "price": 6000000
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-market-update-price">
+                            Update Price
+                            <a href="#request-market-update-price"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-market-update-price-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-market-update-price-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-market-update-price-example-curl">
+                                    <pre><code class="hljs curl">curl -X PUT -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" -d '{
+    "price": 6000000
+}' "https://api.kickbase.com/leagues/[league_id]/market/[player_id]"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-market-update-price-example-http">
+                                    <pre><code class="hljs http">PUT /leagues/[league_id]/market/[player_id] HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+Cookie: kkstrauth=[token];
+
+{
+    "price": 6000000
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-market-decline-offer">
+                            Decline Offer
+                            <a href="#request-market-decline-offer"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-market-decline-offer-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-market-decline-offer-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-market-decline-offer-example-curl">
+                                    <pre><code class="hljs curl">curl -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" -d '{
+    "playerId": "663",
+    "price": 6000000
+}' "https://api.kickbase.com/leagues/[league_id]/market/[player_id]/offers/[offer_id]/decline"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-market-decline-offer-example-http">
+                                    <pre><code class="hljs http">POST /leagues/[league_id]/market/[player_id]/offers/[offer_id]/decline HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+Cookie: kkstrauth=[token];
+
+{
+    "playerId": "663",
+    "price": 6000000
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-market-place-offer">
+                            Place Offer
+                            <a href="#request-market-place-offer"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-market-place-offer-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-market-place-offer-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-market-place-offer-example-curl">
+                                    <pre><code class="hljs curl">curl -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" -d '{
+    "price": 6000000
+}' "https://api.kickbase.com/leagues/[league_id]/market/[player_id]/offers"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-market-place-offer-example-http">
+                                    <pre><code class="hljs http">POST /leagues/[league_id]/market/[player_id]/offers HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+Cookie: kkstrauth=[token];
+
+{
+    "price": 6000000
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-market-remove-offer">
+                            Remove Offer
+                            <a href="#request-market-remove-offer"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-market-remove-offer-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-market-remove-offer-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-market-remove-offer-example-curl">
+                                    <pre><code class="hljs curl">curl -X DELETE -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" "https://api.kickbase.com/leagues/[league_id]/market/[player_id]/offers/[offer_id]/"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-market-remove-offer-example-http">
+                                    <pre><code class="hljs http">DELETE /leagues/[league_id]/market/[player_id]/offers/[offer_id]/ HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+Cookie: kkstrauth=[token];</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+
+                </div>
+                
+                
+                <div class="endpoints-group">
+                    <h3 id="folder-lineup">
+                        Lineup
+                        <a href="#folder-lineup"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-lineup-lineup">
+                            Lineup
+                            <a href="#request-lineup-lineup"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-lineup-lineup-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-lineup-lineup-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-lineup-lineup-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" "https://api.kickbase.com/leagues/[league_id]/lineup"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-lineup-lineup-example-http">
+                                    <pre><code class="hljs http">GET /leagues/[league_id]/lineup HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+Cookie: kkstrauth=[token];</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-lineup-lineup-extended">
+                            Lineup Extended
+                            <a href="#request-lineup-lineup-extended"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-lineup-lineup-extended-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-lineup-lineup-extended-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-lineup-lineup-extended-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" "https://api.kickbase.com/leagues/[league_id]/lineupex"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-lineup-lineup-extended-example-http">
+                                    <pre><code class="hljs http">GET /leagues/[league_id]/lineupex HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+Cookie: kkstrauth=[token];</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-lineup-ligainsider">
+                            Ligainsider
+                            <a href="#request-lineup-ligainsider"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-lineup-ligainsider-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-lineup-ligainsider-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-lineup-ligainsider-example-curl">
+                                    <pre><code class="hljs curl">curl -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" "https://api.kickbase.com/sso/ligainsider?leagueId=[league_id]"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-lineup-ligainsider-example-http">
+                                    <pre><code class="hljs http">POST /sso/ligainsider?leagueId=[league_id] HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+Cookie: kkstrauth=[token];</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-lineup-set-lineup">
+                            Set Lineup
+                            <a href="#request-lineup-set-lineup"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-lineup-set-lineup-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-lineup-set-lineup-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-lineup-set-lineup-example-curl">
+                                    <pre><code class="hljs curl">curl -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" -d '{
+   "actionId":"LU[league_id]",
+   "id":"[league_id]",
+   "type":"3-4-3",
+   "players":[
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+   ]
+}' "https://api.kickbase.com/leagues/[league_id]/lineup"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-lineup-set-lineup-example-http">
+                                    <pre><code class="hljs http">POST /leagues/[league_id]/lineup HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+Cookie: kkstrauth=[token];
+
+{
+   "actionId":"LU[league_id]",
+   "id":"[league_id]",
+   "type":"3-4-3",
+   "players":[
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+   ]
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+
+                </div>
+                
+                
+                <div class="endpoints-group">
+                    <h3 id="folder-live-match-day">
+                        Live Match Day
+                        <a href="#folder-live-match-day"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-live-match-day-chat-history">
+                            Chat History
+                            <a href="#request-live-match-day-chat-history"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-live-match-day-chat-history-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-live-match-day-chat-history-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-live-match-day-chat-history-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" "https://api.kickbase.com/leagues/[league_id]/live/chat?start=0"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-live-match-day-chat-history-example-http">
+                                    <pre><code class="hljs http">GET /leagues/[league_id]/live/chat?start=0 HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+Cookie: kkstrauth=[token];</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-live-match-day-overview">
+                            Overview
+                            <a href="#request-live-match-day-overview"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-live-match-day-overview-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-live-match-day-overview-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-live-match-day-overview-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" "https://api.kickbase.com/leagues/[league_id]/live/"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-live-match-day-overview-example-http">
+                                    <pre><code class="hljs http">GET /leagues/[league_id]/live/ HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+Cookie: kkstrauth=[token];</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-live-match-day-events-history">
+                            Events History
+                            <a href="#request-live-match-day-events-history"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-live-match-day-events-history-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-live-match-day-events-history-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-live-match-day-events-history-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" "https://api.kickbase.com/leagues/[league_id]/live/matches/[match_id]"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-live-match-day-events-history-example-http">
+                                    <pre><code class="hljs http">GET /leagues/[league_id]/live/matches/[match_id] HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+Cookie: kkstrauth=[token];</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-live-match-day-not-lined-up-players">
+                            Not Lined Up Players
+                            <a href="#request-live-match-day-not-lined-up-players"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-live-match-day-not-lined-up-players-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-live-match-day-not-lined-up-players-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-live-match-day-not-lined-up-players-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" "https://api.kickbase.com/leagues/[league_id]/live/notlinedupplayers"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-live-match-day-not-lined-up-players-example-http">
+                                    <pre><code class="hljs http">GET /leagues/[league_id]/live/notlinedupplayers HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+Cookie: kkstrauth=[token];</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-live-match-day-player-history">
+                            Player History
+                            <a href="#request-live-match-day-player-history"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-live-match-day-player-history-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-live-match-day-player-history-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-live-match-day-player-history-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" "https://api.kickbase.com/leagues/[league_id]/live/players/[player_id]"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-live-match-day-player-history-example-http">
+                                    <pre><code class="hljs http">GET /leagues/[league_id]/live/players/[player_id] HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+Cookie: kkstrauth=[token];</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-live-match-day-top-10">
+                            Top 10
+                            <a href="#request-live-match-day-top-10"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-live-match-day-top-10-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-live-match-day-top-10-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-live-match-day-top-10-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" "https://api.kickbase.com/live/top10"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-live-match-day-top-10-example-http">
+                                    <pre><code class="hljs http">GET /live/top10 HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+Cookie: kkstrauth=[token];</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-live-match-day-team-players">
+                            Team Players
+                            <a href="#request-live-match-day-team-players"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-live-match-day-team-players-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-live-match-day-team-players-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-live-match-day-team-players-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" "https://api.kickbase.com/live/teams/[team_id]/players"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-live-match-day-team-players-example-http">
+                                    <pre><code class="hljs http">GET /live/teams/[team_id]/players HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+Cookie: kkstrauth=[token];</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-live-match-day-team-ranking">
+                            Team Ranking
+                            <a href="#request-live-match-day-team-ranking"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-live-match-day-team-ranking-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-live-match-day-team-ranking-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-live-match-day-team-ranking-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" "https://api.kickbase.com/live/teamranking"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-live-match-day-team-ranking-example-http">
+                                    <pre><code class="hljs http">GET /live/teamranking HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+Cookie: kkstrauth=[token];</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-live-match-day-chat-message">
+                            Chat Message
+                            <a href="#request-live-match-day-chat-message"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-live-match-day-chat-message-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-live-match-day-chat-message-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-live-match-day-chat-message-example-curl">
+                                    <pre><code class="hljs curl">curl -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" -d '{
+    "m": "Test"
+}' "https://api.kickbase.com/leagues/[league_id]/live/chat"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-live-match-day-chat-message-example-http">
+                                    <pre><code class="hljs http">POST /leagues/[league_id]/live/chat HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+Cookie: kkstrauth=[token];
+
+{
+    "m": "Test"
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+
+                </div>
+                
+                
+                <div class="endpoints-group">
+                    <h3 id="folder-league">
+                        League
+                        <a href="#folder-league"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-league-leagues">
+                            Leagues
+                            <a href="#request-league-leagues"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-league-leagues-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-league-leagues-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-league-leagues-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" "https://api.kickbase.com/leagues/"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-league-leagues-example-http">
+                                    <pre><code class="hljs http">GET /leagues/ HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+Cookie: kkstrauth=[token];</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-league-feed-comments">
+                            Feed Comments
+                            <a href="#request-league-feed-comments"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-league-feed-comments-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-league-feed-comments-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-league-feed-comments-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" "https://api.kickbase.com/leagues/[league_id]/feed/[feed_item_id]/comments"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-league-feed-comments-example-http">
+                                    <pre><code class="hljs http">GET /leagues/[league_id]/feed/[feed_item_id]/comments HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+Cookie: kkstrauth=[token];</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-league-feed">
+                            Feed
+                            <a href="#request-league-feed"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-league-feed-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-league-feed-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-league-feed-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" "https://api.kickbase.com/leagues/[league_id]/feed?start=0"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-league-feed-example-http">
+                                    <pre><code class="hljs http">GET /leagues/[league_id]/feed?start=0 HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+Cookie: kkstrauth=[token];</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-league-info">
+                            Info
+                            <a href="#request-league-info"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-league-info-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-league-info-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-league-info-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" "https://api.kickbase.com/leagues/[league_id]/info"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-league-info-example-http">
+                                    <pre><code class="hljs http">GET /leagues/[league_id]/info HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+Cookie: kkstrauth=[token];</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-league-players-for-match-day">
+                            Players For Match Day
+                            <a href="#request-league-players-for-match-day"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-league-players-for-match-day-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-league-players-for-match-day-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-league-players-for-match-day-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" "https://api.kickbase.com/leagues/[league_id]/users/[user_id]/players?matchDay=0"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-league-players-for-match-day-example-http">
+                                    <pre><code class="hljs http">GET /leagues/[league_id]/users/[user_id]/players?matchDay=0 HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+Cookie: kkstrauth=[token];</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-league-stats">
+                            Stats
+                            <a href="#request-league-stats"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-league-stats-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-league-stats-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-league-stats-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" "https://api.kickbase.com/leagues/[league_id]/stats"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-league-stats-example-http">
+                                    <pre><code class="hljs http">GET /leagues/[league_id]/stats HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+Cookie: kkstrauth=[token];</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-league-users">
+                            Users
+                            <a href="#request-league-users"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-league-users-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-league-users-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-league-users-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" "https://api.kickbase.com/leagues/[league_id]/users"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-league-users-example-http">
+                                    <pre><code class="hljs http">GET /leagues/[league_id]/users HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+Cookie: kkstrauth=[token];</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-league-user-profile">
+                            User Profile
+                            <a href="#request-league-user-profile"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-league-user-profile-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-league-user-profile-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-league-user-profile-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" "https://api.kickbase.com/leagues/[league_id]/users/[user_id]/profile"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-league-user-profile-example-http">
+                                    <pre><code class="hljs http">GET /leagues/[league_id]/users/[user_id]/profile HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+Cookie: kkstrauth=[token];</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-league-user-stats">
+                            User Stats
+                            <a href="#request-league-user-stats"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-league-user-stats-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-league-user-stats-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-league-user-stats-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" "https://api.kickbase.com/leagues/[league_id]/users/[user_id]/stats"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-league-user-stats-example-http">
+                                    <pre><code class="hljs http">GET /leagues/[league_id]/users/[user_id]/stats HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+Cookie: kkstrauth=[token];</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-league-user-players">
+                            User Players
+                            <a href="#request-league-user-players"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-league-user-players-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-league-user-players-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-league-user-players-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" "https://api.kickbase.com/leagues/[league_id]/users/[user_id]/players"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-league-user-players-example-http">
+                                    <pre><code class="hljs http">GET /leagues/[league_id]/users/[user_id]/players HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+Cookie: kkstrauth=[token];</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-league-me">
+                            Me
+                            <a href="#request-league-me"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-league-me-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-league-me-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-league-me-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" "https://api.kickbase.com/leagues/[league_id]/me"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-league-me-example-http">
+                                    <pre><code class="hljs http">GET /leagues/[league_id]/me HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+Cookie: kkstrauth=[token];</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-league-quickstats">
+                            Quickstats
+                            <a href="#request-league-quickstats"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-league-quickstats-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-league-quickstats-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-league-quickstats-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" "https://api.kickbase.com/leagues/[league_id]/quickstats"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-league-quickstats-example-http">
+                                    <pre><code class="hljs http">GET /leagues/[league_id]/quickstats HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+Cookie: kkstrauth=[token];</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-league-comment-feed">
+                            Comment Feed
+                            <a href="#request-league-comment-feed"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-league-comment-feed-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-league-comment-feed-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-league-comment-feed-example-curl">
+                                    <pre><code class="hljs curl">curl -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" -d '{
+    "comment": "Test"
+}' "https://api.kickbase.com/leagues/[league_id]/feed/[feed_item_id]/comments"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-league-comment-feed-example-http">
+                                    <pre><code class="hljs http">POST /leagues/[league_id]/feed/[feed_item_id]/comments HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+Cookie: kkstrauth=[token];
+
+{
+    "comment": "Test"
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-league-comment-league">
+                            Comment League
+                            <a href="#request-league-comment-league"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-league-comment-league-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-league-comment-league-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-league-comment-league-example-curl">
+                                    <pre><code class="hljs curl">curl -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" -d '{
+    "comment": "Test"
+}' "https://api.kickbase.com/leagues/[league_id]/feed"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-league-comment-league-example-http">
+                                    <pre><code class="hljs http">POST /leagues/[league_id]/feed HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+Cookie: kkstrauth=[token];
+
+{
+    "comment": "Test"
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+
+                </div>
+                
+                
+                <div class="endpoints-group">
+                    <h3 id="folder-competition">
+                        Competition
+                        <a href="#folder-competition"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-competition-add-favorite-player">
+                            Add Favorite Player
+                            <a href="#request-competition-add-favorite-player"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-competition-add-favorite-player-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-competition-add-favorite-player-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-competition-add-favorite-player-example-curl">
+                                    <pre><code class="hljs curl">curl -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" "https://api.kickbase.com/user/favoriteplayers/[player_id]"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-competition-add-favorite-player-example-http">
+                                    <pre><code class="hljs http">POST /user/favoriteplayers/[player_id] HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+Cookie: kkstrauth=[token];</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-competition-remove-favorite-player">
+                            Remove Favorite Player
+                            <a href="#request-competition-remove-favorite-player"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-competition-remove-favorite-player-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-competition-remove-favorite-player-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-competition-remove-favorite-player-example-curl">
+                                    <pre><code class="hljs curl">curl -X DELETE -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" "https://api.kickbase.com/user/favoriteplayers/[player_id]"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-competition-remove-favorite-player-example-http">
+                                    <pre><code class="hljs http">DELETE /user/favoriteplayers/[player_id] HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+Cookie: kkstrauth=[token];</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-competition-top-25-players">
+                            Top 25 Players
+                            <a href="#request-competition-top-25-players"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-competition-top-25-players-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-competition-top-25-players-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-competition-top-25-players-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET -H "Content-Type: application/json" -H "Accept: application/json" "https://api.kickbase.com/competition/best?position=0"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-competition-top-25-players-example-http">
+                                    <pre><code class="hljs http">GET /competition/best?position=0 HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-competition-matches">
+                            Matches
+                            <a href="#request-competition-matches"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-competition-matches-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-competition-matches-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-competition-matches-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" "https://api.kickbase.com/competition/matches?matchDay=20"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-competition-matches-example-http">
+                                    <pre><code class="hljs http">GET /competition/matches?matchDay=20 HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+Cookie: kkstrauth=[token];</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-competition-table">
+                            Table
+                            <a href="#request-competition-table"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-competition-table-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-competition-table-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-competition-table-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" "https://api.kickbase.com/competition/table?matchDay=30"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-competition-table-example-http">
+                                    <pre><code class="hljs http">GET /competition/table?matchDay=30 HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+Cookie: kkstrauth=[token];</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-competition-team-players">
+                            Team Players
+                            <a href="#request-competition-team-players"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-competition-team-players-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-competition-team-players-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-competition-team-players-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" "https://api.kickbase.com/competition/teams/[team_id]/players"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-competition-team-players-example-http">
+                                    <pre><code class="hljs http">GET /competition/teams/[team_id]/players HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+Cookie: kkstrauth=[token];</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-competition-search-players">
+                            Search Players
+                            <a href="#request-competition-search-players"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-competition-search-players-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-competition-search-players-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-competition-search-players-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" "https://api.kickbase.com/competition/search?t=Lewandowski"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-competition-search-players-example-http">
+                                    <pre><code class="hljs http">GET /competition/search?t=Lewandowski HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+Cookie: kkstrauth=[token];</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+
+                </div>
+                
+                
+                <div class="endpoints-group">
+                    <h3 id="folder-gift">
+                        Gift
+                        <a href="#folder-gift"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-gift-collect">
+                            Collect
+                            <a href="#request-gift-collect"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-gift-collect-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-gift-collect-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-gift-collect-example-curl">
+                                    <pre><code class="hljs curl">curl -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" "https://api.kickbase.com/leagues/[league_id]/collectgift"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-gift-collect-example-http">
+                                    <pre><code class="hljs http">POST /leagues/[league_id]/collectgift HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+Cookie: kkstrauth=[token];</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-gift-current-gift">
+                            Current Gift
+                            <a href="#request-gift-current-gift"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-gift-current-gift-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-gift-current-gift-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-gift-current-gift-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" "https://api.kickbase.com/leagues/[league_id]/currentgift"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-gift-current-gift-example-http">
+                                    <pre><code class="hljs http">GET /leagues/[league_id]/currentgift HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+Cookie: kkstrauth=[token];</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+
+                </div>
+                
+                
+                <div class="endpoints-group">
+                    <h3 id="folder-achievements">
+                        Achievements
+                        <a href="#folder-achievements"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-achievements-achivements">
+                            Achivements
+                            <a href="#request-achievements-achivements"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-achievements-achivements-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-achievements-achivements-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-achievements-achivements-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" "https://api.kickbase.com/user/achievements?league_id=[league_id]"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-achievements-achivements-example-http">
+                                    <pre><code class="hljs http">GET /user/achievements?league_id=[league_id] HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+Cookie: kkstrauth=[token];</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-2.2.2.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("table:not(.table)").addClass('table table-bordered');
+    });
+</script>
+</body>
+</html>
