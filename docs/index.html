@@ -959,22 +959,14 @@ Cookie: kkstrauth=[token];
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-pane active" id="request-market-accept-offer-example-curl">
-                                    <pre><code class="hljs curl">curl -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" -d '{
-    "playerId": "663",
-    "price": 6000000
-}' "https://api.kickbase.com/leagues/[league_id]/market/[player_id]/offers/[offer_id]/accept"</code></pre>
+                                    <pre><code class="hljs curl">curl -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" "https://api.kickbase.com/leagues/[league_id]/market/[player_id]/offers/[offer_id]/accept"</code></pre>
                                 </div>
                                 <div class="tab-pane" id="request-market-accept-offer-example-http">
                                     <pre><code class="hljs http">POST /leagues/[league_id]/market/[player_id]/offers/[offer_id]/accept HTTP/1.1
 Host: api.kickbase.com
 Content-Type: application/json
 Accept: application/json
-Cookie: kkstrauth=[token];
-
-{
-    "playerId": "663",
-    "price": 6000000
-}</code></pre>
+Cookie: kkstrauth=[token];</code></pre>
                                 </div>
                             </div>
                         </div>
@@ -1273,8 +1265,6 @@ Cookie: kkstrauth=[token];</code></pre>
                             <div class="tab-content">
                                 <div class="tab-pane active" id="request-lineup-set-lineup-example-curl">
                                     <pre><code class="hljs curl">curl -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" -d '{
-   "actionId":"LU[league_id]",
-   "id":"[league_id]",
    "type":"3-4-3",
    "players":[
       null,
@@ -1299,8 +1289,6 @@ Accept: application/json
 Cookie: kkstrauth=[token];
 
 {
-   "actionId":"LU[league_id]",
-   "id":"[league_id]",
    "type":"3-4-3",
    "players":[
       null,

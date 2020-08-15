@@ -535,15 +535,6 @@
 								"value": "kkstrauth={{token}};"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"playerId\": \"663\",\r\n    \"price\": 6000000\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
 							"raw": "{{api_url}}/leagues/{{league_id}}/market/{{player_id}}/offers/{{offer_id}}/accept",
 							"host": [
@@ -903,7 +894,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n   \"actionId\":\"LU{{league_id}}\",\r\n   \"id\":\"{{league_id}}\",\r\n   \"type\":\"3-4-3\",\r\n   \"players\":[\r\n      null,\r\n      null,\r\n      null,\r\n      null,\r\n      null,\r\n      null,\r\n      null,\r\n      null,\r\n      null,\r\n      null,\r\n      null\r\n   ]\r\n}"
+							"raw": "{\r\n   \"type\":\"3-4-3\",\r\n   \"players\":[\r\n      null,\r\n      null,\r\n      null,\r\n      null,\r\n      null,\r\n      null,\r\n      null,\r\n      null,\r\n      null,\r\n      null,\r\n      null\r\n   ]\r\n}"
 						},
 						"url": {
 							"raw": "{{api_url}}/leagues/{{league_id}}/lineup",
