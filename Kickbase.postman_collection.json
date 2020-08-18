@@ -172,6 +172,56 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Refresh Chat Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a50380cc-a17f-452c-b0cc-cb73aedfe247",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"chat_token\", jsonData.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Cookie",
+								"type": "text",
+								"value": "kkstrauth={{token}};"
+							}
+						],
+						"url": {
+							"raw": "{{api_url}}/user/refreshchattoken",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"user",
+								"refreshchattoken"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}
@@ -2258,6 +2308,140 @@
 									"key": "league_id",
 									"value": "{{league_id}}"
 								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Chat",
+			"item": [
+				{
+					"name": "Exchange Custom Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5cb2010f-5aff-4944-bbf1-ae2b41d282d0",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"firebase_id_token\", jsonData.idToken);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"returnSecureToken\": true,\r\n    \"token\": \"{{chat_token}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyCustomToken?key={{api_key}}",
+							"protocol": "https",
+							"host": [
+								"www",
+								"googleapis",
+								"com"
+							],
+							"path": [
+								"identitytoolkit",
+								"v3",
+								"relyingparty",
+								"verifyCustomToken"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{api_key}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Message",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{firebase_id_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"fields\": {\r\n        \"userId\": {\r\n          \"stringValue\": \"{{user_id}}\"\r\n        },\r\n        \"message\": {\r\n          \"stringValue\": \"Hello World!\"\r\n        },\r\n        \"leagueId\": {\r\n          \"stringValue\": \"{{league_id}}\"\r\n        },\r\n        \"date\": {\r\n          \"stringValue\": \"2020-08-17T19:13:04Z\"\r\n        },\r\n        \"username\": {\r\n          \"stringValue\": \"\"\r\n        },\r\n         \"seenBy\": {\r\n          \"arrayValue\": {\r\n            \"values\": [\r\n              {\r\n                \"stringValue\": \"{{user_id}}\"\r\n              }\r\n            ]\r\n          }\r\n        }\r\n     }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://firestore.googleapis.com/v1/projects/kickbase-bdb0f/databases/(default)/documents/chat/{{league_id}}/messages",
+							"protocol": "https",
+							"host": [
+								"firestore",
+								"googleapis",
+								"com"
+							],
+							"path": [
+								"v1",
+								"projects",
+								"kickbase-bdb0f",
+								"databases",
+								"(default)",
+								"documents",
+								"chat",
+								"{{league_id}}",
+								"messages"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Messages",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{firebase_id_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://firestore.googleapis.com/v1/projects/kickbase-bdb0f/databases/(default)/documents/chat/{{league_id}}/messages",
+							"protocol": "https",
+							"host": [
+								"firestore",
+								"googleapis",
+								"com"
+							],
+							"path": [
+								"v1",
+								"projects",
+								"kickbase-bdb0f",
+								"databases",
+								"(default)",
+								"documents",
+								"chat",
+								"{{league_id}}",
+								"messages"
 							]
 						}
 					},
