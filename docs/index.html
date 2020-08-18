@@ -177,6 +177,10 @@ pre code {
                     <a href="#request-user-user-match-day-feed">User Match Day Feed</a>
                 </li>
                 
+                <li>
+                    <a href="#request-user-refresh-chat-token">Refresh Chat Token</a>
+                </li>
+                
             </ul>
         </li>
         
@@ -444,6 +448,26 @@ pre code {
             </ul>
         </li>
         
+        
+        <li>
+            <a href="#folder-chat">Chat</a>
+            <ul>
+                
+                <li>
+                    <a href="#request-chat-exchange-custom-token">Exchange Custom Token</a>
+                </li>
+                
+                <li>
+                    <a href="#request-chat-post-message">Post Message</a>
+                </li>
+                
+                <li>
+                    <a href="#request-chat-get-messages">Get Messages</a>
+                </li>
+                
+            </ul>
+        </li>
+        
     </ul>
 </div>
 
@@ -623,6 +647,40 @@ Cookie: kkstrauth=[token];</code></pre>
                                 </div>
                                 <div class="tab-pane" id="request-user-user-match-day-feed-example-http">
                                     <pre><code class="hljs http">GET /leagues/[league_id]/users/[user_id]/feed HTTP/1.1
+Host: api.kickbase.com
+Content-Type: application/json
+Accept: application/json
+Cookie: kkstrauth=[token];</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-user-refresh-chat-token">
+                            Refresh Chat Token
+                            <a href="#request-user-refresh-chat-token"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-user-refresh-chat-token-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-user-refresh-chat-token-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-user-refresh-chat-token-example-curl">
+                                    <pre><code class="hljs curl">curl -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "Cookie: kkstrauth=[token];" "https://api.kickbase.com/user/refreshchattoken"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-user-refresh-chat-token-example-http">
+                                    <pre><code class="hljs http">POST /user/refreshchattoken HTTP/1.1
 Host: api.kickbase.com
 Content-Type: application/json
 Accept: application/json
@@ -2508,6 +2566,178 @@ Host: api.kickbase.com
 Content-Type: application/json
 Accept: application/json
 Cookie: kkstrauth=[token];</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+
+                </div>
+                
+                
+                <div class="endpoints-group">
+                    <h3 id="folder-chat">
+                        Chat
+                        <a href="#folder-chat"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-chat-exchange-custom-token">
+                            Exchange Custom Token
+                            <a href="#request-chat-exchange-custom-token"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-chat-exchange-custom-token-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-chat-exchange-custom-token-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-chat-exchange-custom-token-example-curl">
+                                    <pre><code class="hljs curl">curl -X POST -d '{
+    "returnSecureToken": true,
+    "token": "[chat_token]"
+}' "https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyCustomToken?key=[api_key]"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-chat-exchange-custom-token-example-http">
+                                    <pre><code class="hljs http">POST /identitytoolkit/v3/relyingparty/verifyCustomToken?key=[api_key] HTTP/1.1
+Host: www.googleapis.com
+
+{
+    "returnSecureToken": true,
+    "token": "[chat_token]"
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-chat-post-message">
+                            Post Message
+                            <a href="#request-chat-post-message"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-chat-post-message-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-chat-post-message-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-chat-post-message-example-curl">
+                                    <pre><code class="hljs curl">curl -X POST -H "Authorization: Bearer [firebase_id_token]" -d '{
+     "fields": {
+        "userId": {
+          "stringValue": "[user_id]"
+        },
+        "message": {
+          "stringValue": "Hello World!"
+        },
+        "leagueId": {
+          "stringValue": "[league_id]"
+        },
+        "date": {
+          "stringValue": "2020-08-17T19:13:04Z"
+        },
+        "username": {
+          "stringValue": ""
+        },
+         "seenBy": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "[user_id]"
+              }
+            ]
+          }
+        }
+     }
+}' "https://firestore.googleapis.com/v1/projects/kickbase-bdb0f/databases/(default)/documents/chat/[league_id]/messages"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-chat-post-message-example-http">
+                                    <pre><code class="hljs http">POST /v1/projects/kickbase-bdb0f/databases/(default)/documents/chat/[league_id]/messages HTTP/1.1
+Host: firestore.googleapis.com
+Authorization: Bearer [firebase_id_token]
+
+{
+     "fields": {
+        "userId": {
+          "stringValue": "[user_id]"
+        },
+        "message": {
+          "stringValue": "Hello World!"
+        },
+        "leagueId": {
+          "stringValue": "[league_id]"
+        },
+        "date": {
+          "stringValue": "2020-08-17T19:13:04Z"
+        },
+        "username": {
+          "stringValue": ""
+        },
+         "seenBy": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "[user_id]"
+              }
+            ]
+          }
+        }
+     }
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-chat-get-messages">
+                            Get Messages
+                            <a href="#request-chat-get-messages"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-chat-get-messages-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-chat-get-messages-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-chat-get-messages-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET -H "Authorization: Bearer [firebase_id_token]" "https://firestore.googleapis.com/v1/projects/kickbase-bdb0f/databases/(default)/documents/chat/[league_id]/messages"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-chat-get-messages-example-http">
+                                    <pre><code class="hljs http">GET /v1/projects/kickbase-bdb0f/databases/(default)/documents/chat/[league_id]/messages HTTP/1.1
+Host: firestore.googleapis.com
+Authorization: Bearer [firebase_id_token]</code></pre>
                                 </div>
                             </div>
                         </div>
