@@ -9,13 +9,23 @@ Kickbase API v4 Documentation
 
 <div align="center">
 
+<a href="https://share.apidog.com/fe2420a6-d929-409f-9b1d-35122923316d">
+
+![Static Badge](https://img.shields.io/badge/Browse%20Docs%20with%20apidog%20ui-585858?style=for-the-badge&logo=apidog)
+
+</a>
+
+</div>
+
+<div align="center">
+
 <a href="http://kevinskyba.github.io/kickbase-api-doc/index.html">
 
 ![Static Badge](https://img.shields.io/badge/Browse%20Docs%20with%20swagger%20ui-585858?style=for-the-badge&logo=swagger)
 
 </a>
 
-![Static Badge](https://img.shields.io/badge/version-4.0.17-%23ff4600?style=for-the-badge)
+![Static Badge](https://img.shields.io/badge/version-4.3.3-%23ff4600?style=for-the-badge)
 ![Static Badge](https://img.shields.io/badge/license-MIT-%23ff4600?style=for-the-badge)
 ![Static Badge](https://img.shields.io/badge/contributers-3-%23ff4600?style=for-the-badge)
 
@@ -26,6 +36,8 @@ This repository contains the **API v4** documentation of the popular game **[kic
 ## Usage
 
 ### Web
+
+> **NEW!** Directly use the browseable and interactive [Apidog Web Version](https://share.apidog.com/fe2420a6-d929-409f-9b1d-35122923316d)
 
 Use the browseable [Web Version](http://kevinskyba.github.io/kickbase-api-doc/index.html) made with [Apidog](https://apidog.com/blog/export-postman-documentation-to-html-or-markdown/) and [Swagger Hub](https://app.swaggerhub.com/)
 
