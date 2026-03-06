@@ -9,7 +9,7 @@ Kickbase API v4 Documentation
 
 <div align="center">
 
-<a href="https://share.apidog.com/fe2420a6-d929-409f-9b1d-35122923316d">
+<a href="https://share.apidog.com/bca1f84a-99d7-4f8f-96a5-5e084ee24fe3">
 
 ![Static Badge](https://img.shields.io/badge/Browse%20Docs%20with%20apidog%20ui-585858?style=for-the-badge&logo=apidog)
 
@@ -25,31 +25,33 @@ Kickbase API v4 Documentation
 
 </a>
 
-![Static Badge](https://img.shields.io/badge/version-4.3.3-%23ff4600?style=for-the-badge)
+![Static Badge](https://img.shields.io/badge/version-4.5.0-%23ff4600?style=for-the-badge)
 ![Static Badge](https://img.shields.io/badge/license-MIT-%23ff4600?style=for-the-badge)
 ![Static Badge](https://img.shields.io/badge/contributers-3-%23ff4600?style=for-the-badge)
 
 </div>
 
-This repository contains the **API v4** documentation of the popular game **[kickbase](https://www.kickbase.com/)**. This work is unofficial and not related to kickbase in any way. All of this was done for scientific reasons only and you should not use it for anything else but for your personal learning!
+This repository contains the **API v4** documentation of the popular game **[kickbase](https://www.kickbase.com/)**.
+This work is unofficial and not related to kickbase in any way. All of this was done for scientific reasons only and you
+should not use it for anything else but for your personal learning!
 
 ## Usage
 
 ### Web
 
-> **NEW!** Directly use the browseable and interactive [Apidog Web Version](https://share.apidog.com/fe2420a6-d929-409f-9b1d-35122923316d)
+> **NEW!** Directly use the browseable and
+> interactive [Apidog Web Version](https://share.apidog.com/fe2420a6-d929-409f-9b1d-35122923316d)
 
-Use the browseable [Web Version](http://kevinskyba.github.io/kickbase-api-doc/index.html) made with [Apidog](https://apidog.com/blog/export-postman-documentation-to-html-or-markdown/) and [Swagger Hub](https://app.swaggerhub.com/)
+Use the browseable [Web Version](http://kevinskyba.github.io/kickbase-api-doc/index.html) made
+with [Apidog](https://apidog.com/blog/export-postman-documentation-to-html-or-markdown/)
+and [Swagger Hub](https://app.swaggerhub.com/)
 
 **How to get started:**
 
-1. Make sure `"https://api.kickbase.com - Kickbase v4"` is selected in the `"Servers"` dropdown
+1. Choose endpoint `/v4/user/login` from the `User` section
+2. On the right hand side click the `"Try it out"` button
 
-2. Choose endpoint `/v4/user/login` from the `User` section
-
-3. On the right hand side click the `"Try it out"` button
-
-4. Fill in your kickbase email and password into the request body json
+3. Fill in your kickbase email and password into the request body json
 
    ```json
    {
@@ -60,7 +62,7 @@ Use the browseable [Web Version](http://kevinskyba.github.io/kickbase-api-doc/in
    }
    ```
 
-5. Click the `"Execute"` button and copy the property `"tkn"` from the response body json
+4. Click the `"Execute"` button and copy the property `"tkn"` from the response body json
 
    ```json
    {
@@ -70,15 +72,17 @@ Use the browseable [Web Version](http://kevinskyba.github.io/kickbase-api-doc/in
    }
    ```
 
-6. Click `"Authorize"` at the top right corner of the page, paste in the `access token` into the value field and click again `"Authorize"`
+5. Click `"Authorize"` at the top right corner of the page, paste in the `access token` into the value field and click
+   again `"Authorize"`
 
-7. Now you can try out any endpoint with your path and query params
+6. Now you can try out any endpoint with your path and query params
 
 ### Local
 
 #### Postman
 
-Import the [Postman Collection JSON](kickbase-v4.postman_collection.json) and [Postman Eniroment JSON](kickbase-v4.postman_environment.json) into your postman workspace
+Import the [Postman Collection JSON](kickbase-v4.postman_collection.json)
+and [Postman Eniroment JSON](kickbase-v4.postman_environment.json) into your postman workspace
 
 #### Swagger
 
@@ -98,7 +102,42 @@ Import the [Swagger JSON](kickbase-v4.swagger.json) into your swagger hub
 
 ## Issues
 
-As all of the endpoints are **found by try and error**, this documentation **may be incomplete**. Most likely there are more endpoints. **In fact, most of the post, put or delete requests have missing request bodies**. If you have any further information about new or existing endpoints feel free to submit them in the issues. We'll review and add them to the documentation.
+### API Documentation Status
+
+This documentation contains all currently known endpoints, including their path parameters, query parameters, and
+request bodies, as of March 6, 2026.
+
+For GET requests, we provide response examples for most endpoints. However, for the majority of POST, PUT, and DELETE
+requests, response examples are currently missing. Collecting and validating these responses requires significant setup
+and time, and this project is maintained as a hobby project.
+
+Descriptions have been added to most relevant endpoints. These descriptions were generated using Postman Generative AI.
+While they appear largely accurate at first glance, they may still contain inaccuracies or hallucinations, so please
+verify them before relying on them in production environments.
+
+Please use the API responsibly. Avoid sending large numbers of requests or requesting excessive amounts of data at once.
+It is possible that the service provider may monitor requests made outside their official applications and block access.
+We do not take responsibility for any actions taken using this documentation.
+
+If you encounter incorrect documentation or non-working endpoints, please open an issue.
+
+### Contributing
+
+We are always looking for contributors.
+
+At the moment, the most valuable contributions would be:
+
+- Collecting 2xx and 4xx responses
+- Documenting response schemas
+- Completing request body schemas
+
+Having complete request and response schemas would allow us to generate an OpenAPI specification. This would enable
+automatic generation of REST clients, for example:
+
+- JavaScript clients using tools like Orval
+- Python clients using frameworks such as FastAPI
+
+These improvements would significantly increase the usability of this project.
 
 Thank you!
 
